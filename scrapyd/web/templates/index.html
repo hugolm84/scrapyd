@@ -1,0 +1,47 @@
+{% include "includes/header.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Recent jobs</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Project</th>
+            <th>Spider</th>
+            <th>Items</th>
+            <th>Logs</th>
+            <th>Status</th>
+            <th>Runtime</th>
+            <th>Id</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for status in jobs %}
+                {% for item in jobs[status] %}
+                    <tr>
+                        <td>{{item['date']}}</td>
+                        <td>{{item['project']}}</td>
+                        <td>{{item['name']}}</td>
+                        <td><a href={{item['items']}}>View</a></td>
+                        <td><a href={{item['log']}}>View</a></td>
+                        <td>{{status}}</td>
+                        <td>{{item['runtime']}}</td>
+                        <td>{{item['job']}}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>How to schedule a spider?</h3>
+
+    <p>To schedule a spider you can use the API or from the <a href="/spiders">Spiders page</a></p>
+
+    <p>Example using <a href="http://curl.haxx.se/">curl</a>:</p>
+    <p><code>curl http://localhost:6800/schedule.json -d project=default -d spider=somespider</code></p>
+
+    <p>For more information about the API, see the
+        <a href="http://scrapyd.readthedocs.org/en/latest/">Scrapyd documentation</a>
+    </p>
+</div>
+{% endblock %}
