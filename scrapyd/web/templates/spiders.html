@@ -3,24 +3,43 @@
 {% block content %}
 <div class="container">
     <h1>{{page_title}}</h1>
-    <table class="table">
+    {% for project in project_spiders %}
+    <h3>{{project.name}}</h3>
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th>Project</th>
             <th>Spider</th>
+            <th>Items</th>
+            <th>Logs</th>
             <th>Schedule</th>
         </thead>
         <tbody>
-        {% for project in spiders %}
-            {% for spider in project.spiders %}
+        {% for spider in project.spiders %}
             <tr>
-                <td>{{project.project}}</td>
                 <td>{{spider}}</td>
-                <td><a href="">Schedule</a></td>
+                <td><a href="/items/{{project.name}}/{{spider}}/">Items</a></td>
+                <td><a href="/logs/{{project.name}}/{{spider}}/">Logs</td>
+                <td>
+                    <form action="schedule.json" method="post" accept-charset="UTF-8" style="display:inline">
+                        <input class=hidden name="project" value="{{project.name}}">
+                        <button class="btn btn-xs btn-info" type=submit name="spider" value="{{spider}}">Schedule</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
-        {% endfor %}
         </tbody>
     </table>
+
+    <p class="bg-danger">
+        <form action="delproject.json" method="post" accept-charset="UTF-8" style="display:inline">
+            <input class=hidden name="project" value="{{project.name}}">
+            <button class="btn btn-xs btn-danger pull-right" type=submit name="spider" value="{{spider}}">Delete</button>
+        </form>
+    </p>
+    {% endfor %}
+
+    <h3>How to add a project?</h3>
+    <p><code>scrapy deploy default</code></p>
+
 </div>
 {% endblock %}
