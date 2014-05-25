@@ -1,0 +1,26 @@
+{% include "includes/header.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{{page_title}}</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Project</th>
+            <th>Spider</th>
+            <th>Schedule</th>
+        </thead>
+        <tbody>
+        {% for project in spiders %}
+            {% for spider in project.spiders %}
+            <tr>
+                <td>{{project.project}}</td>
+                <td>{{spider}}</td>
+                <td><a href="">Schedule</a></td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

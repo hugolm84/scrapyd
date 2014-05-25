@@ -1,0 +1,22 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Scrapyd WebUI{% endblock %}
+
+{% block navbar %}
+{% include "includes/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Scrapyd</h1>
+    <h3>Logs</h3>
+    <h1>{{ tree.name }}</h1>
+    <ul>
+        {% for item in tree.children recursive %}
+        <li>{{ item.name }}
+            {% if item.children -%}
+            <ul>{{ loop(item.children) }}</ul>
+            {% endif %}</li>
+        {%- endfor %}
+    </ul>
+</div>
+{% endblock %}
