@@ -1,2 +1,4 @@
 Scrapy
 twisted
+flask
+flask-bootstrap

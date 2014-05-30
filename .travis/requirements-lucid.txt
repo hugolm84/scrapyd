@@ -1,2 +1,4 @@
 Scrapy
 twisted==10.0.0
+flask
+flask-bootstrap
