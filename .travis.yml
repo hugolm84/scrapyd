@@ -22,6 +22,6 @@ script:
 notifications:
     irc:
         channels:
-            - "irc.freenode.org#scrapy"
+            - "irc.freenode.org#tomahawk.charts"
         use_notice: true
         skip_join: true
