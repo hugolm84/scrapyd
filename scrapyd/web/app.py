@@ -76,7 +76,7 @@ class FlaskApp(resource.Resource):
 
     def launcher_item(self, p, d):
         return {'project': p.project, 'name': p.spider, 'job': p.job,
-                'items': '/items/%s/%s/%s.jl' % (p.project, p.spider, p.job),
+                'items': '/items/%s/%s/%s.json' % (p.project, p.spider, p.job),
                 'log': '/logs/%s/%s/%s.log' % (p.project, p.spider, p.job),
                 'runtime': (d - p.start_time),
                 'date' : p.start_time.strftime(self.date_format)}
