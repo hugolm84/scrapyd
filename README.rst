@@ -2,8 +2,8 @@
 Scrapyd
 =======
 
-.. image:: https://secure.travis-ci.org/scrapy/scrapyd.png?branch=master
-   :target: http://travis-ci.org/scrapy/scrapyd
+.. image:: https://secure.travis-ci.org/hugolm84/scrapyd.png?branch=master
+   :target: http://travis-ci.org/hugolm84/scrapyd/
 
 Scrapyd is a service for running `Scrapy`_ spiders.
 
