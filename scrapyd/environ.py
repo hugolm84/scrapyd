@@ -36,7 +36,8 @@ class Environment(object):
 
     def _get_file(self, message, dir, ext):
         logsdir = os.path.join(dir, message['_project'], \
-            message['_spider'])
+            message['_spider'], message['_job'])
+
         if not os.path.exists(logsdir):
             os.makedirs(logsdir)
         to_delete = sorted((os.path.join(logsdir, x) for x in \
