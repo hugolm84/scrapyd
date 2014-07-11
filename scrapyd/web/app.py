@@ -2,10 +2,8 @@ import os
 from datetime import datetime
 from flask import Flask, render_template
 from flask import Blueprint
-
 from flask_bootstrap import Bootstrap
 from twisted.web import resource
-
 from scrapyd.utils import get_spider_list
 
 class FlaskApp(resource.Resource):
@@ -76,8 +74,8 @@ class FlaskApp(resource.Resource):
 
     def launcher_item(self, p, d):
         return {'project': p.project, 'name': p.spider, 'job': p.job,
-                'items': '/items/%s/%s/%s.json' % (p.project, p.spider, p.job),
-                'log': '/logs/%s/%s/%s.log' % (p.project, p.spider, p.job),
+                'items': '/items/%s/%s/%s/%s.json' % (p.project, p.spider, p.job, p.job),
+                'log': '/logs/%s/%s/%s/%s.log' % (p.project, p.spider, p.job, p.job),
                 'runtime': (d - p.start_time),
                 'date' : p.start_time.strftime(self.date_format)}
 
