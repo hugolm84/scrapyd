@@ -1,3 +1,5 @@
+import socket
+
 from twisted.web import resource
 from twisted.application.service import IServiceCollection
 
@@ -20,6 +22,7 @@ class Root(resource.Resource):
 
         self.config = config
         self.app = app
+        self.nodename = config.get('node_name', socket.gethostname())
 
         web_path = config.get("web_app")
 
