@@ -37,8 +37,8 @@ class Environment(object):
 
     def _get_feed_uri(self, message, ext):
         url = urlparse(self.items_dir)
-        if url.scheme.lower() in ['', 'file']:
-            return 'file://' + self._get_file(message, url.path, ext)
+        #if url.scheme.lower() in ['', 'file']:
+        #    return 'file://' + self._get_file(message, url.path, ext)
         return urlunparse((url.scheme,
                            url.netloc,
                            '/'.join([url.path,
