@@ -4,7 +4,7 @@ from flask import Flask, render_template
 from flask import Blueprint
 from flask_bootstrap import Bootstrap
 from twisted.web import resource
-from scrapyd.utils import get_spider_list
+from scrapyd.utils import get_spider_list, UtilsCache
 
 class FlaskApp(resource.Resource):
 
@@ -38,11 +38,17 @@ class FlaskApp(resource.Resource):
         @flask.route("/spiders")
         def projects():
             project_spiders = []
+            scrapyd_error = None
             for project in self.root.scheduler.list_projects():
-                project_spiders.append({'name': project, 'spiders': get_spider_list(project, runner=self.root.runner)})
+                if project is '.DS_Store':
+                    pass
+                try:
+                    project_spiders.append({'name': project, 'spiders': get_spider_list(project, runner=self.root.runner)})
+                except RuntimeError, e:
+                    scrapyd_error = "%s: %s" % (project, e.message)
 
-            return render_template("spiders.html", page_title="Spiders", project_spiders=project_spiders)
-
+            return render_template("spiders.html", page_title="Spiders", project_spiders=project_spiders,
+                                   error=scrapyd_error)
         return flask
 
     def generic_error_handler(self, error):
